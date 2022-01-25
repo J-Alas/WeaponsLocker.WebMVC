@@ -29,5 +29,9 @@ namespace WeaponsLocker.Data
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Firearm> Firearms { get; set; }
+        public DbSet<Attachment> Attachments { get; set; }
+        public DbSet<Ammunition> Ammunitions { get; set; }
     }
 }
