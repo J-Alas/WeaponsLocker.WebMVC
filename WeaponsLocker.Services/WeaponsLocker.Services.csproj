@@ -54,11 +54,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AmmunitionService.cs" />
+    <Compile Include="AttachmentService.cs" />
+    <Compile Include="FirearmService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WeaponsLocker.Data\WeaponsLocker.Data.csproj">
+      <Project>{5F6172CA-45B2-4D10-AB05-C6478F8A8892}</Project>
+      <Name>WeaponsLocker.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WeaponsLocker.Models\WeaponsLocker.Models.csproj">
+      <Project>{17C5F94D-D5FE-42D3-BED6-F12AD24D5CD7}</Project>
+      <Name>WeaponsLocker.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

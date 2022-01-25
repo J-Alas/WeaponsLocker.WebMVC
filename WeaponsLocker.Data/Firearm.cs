@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace WeaponsLocker.Data
 {
     public enum FirearmType { Rifle, SniperRifle, Shotgun, Pistol}
-    enum Usage { EverydayCarry, HomeDefense, Hunting,}
+    public enum Usage { EverydayCarry, HomeDefense, Hunting,}
     public class Firearm
     {
         [Key]
@@ -33,7 +33,7 @@ namespace WeaponsLocker.Data
         }
 
         [Required]
-        public DateTime LastCleaned { get; set; }
+        public DateTimeOffset? LastCleaned { get; set; }
 
 
     }

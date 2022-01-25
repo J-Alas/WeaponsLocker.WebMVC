@@ -169,6 +169,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AmmunitionController.cs" />
+    <Compile Include="Controllers\AttachmentController.cs" />
+    <Compile Include="Controllers\FirearmController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -235,6 +238,18 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Firearm\Index.cshtml" />
+    <Content Include="Views\Attachment\Index.cshtml" />
+    <Content Include="Views\Ammunition\Index.cshtml" />
+    <Content Include="Views\Firearm\Create.cshtml" />
+    <Content Include="Views\Attachment\Create.cshtml" />
+    <Content Include="Views\Ammunition\Create.cshtml" />
+    <Content Include="Views\Firearm\Edit.cshtml" />
+    <Content Include="Views\Firearm\Details.cshtml" />
+    <Content Include="Views\Firearm\Delete.cshtml" />
+    <Content Include="Views\Attachment\Details.cshtml" />
+    <Content Include="Views\Attachment\Edit.cshtml" />
+    <Content Include="Views\Attachment\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

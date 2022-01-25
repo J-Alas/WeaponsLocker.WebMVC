@@ -54,6 +54,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ammunition\AmmunitionCreate.cs" />
+    <Compile Include="Ammunition\AmmunitionDetails.cs" />
+    <Compile Include="Ammunition\AmmunitionEdit.cs" />
+    <Compile Include="Ammunition\AmmunitionListItem.cs" />
+    <Compile Include="Attachment\AttachmentCreate.cs" />
+    <Compile Include="Attachment\AttachmentDetails.cs" />
+    <Compile Include="Attachment\AttachmentEdit.cs" />
+    <Compile Include="Attachment\AttachmentListItem.cs" />
+    <Compile Include="Firearm\FirearmCreate.cs" />
+    <Compile Include="Firearm\FirearmDetails.cs" />
+    <Compile Include="Firearm\FirearmEdit.cs" />
+    <Compile Include="Firearm\FirearmListItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
