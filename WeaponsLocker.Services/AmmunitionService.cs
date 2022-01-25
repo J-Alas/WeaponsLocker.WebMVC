@@ -18,79 +18,77 @@ namespace WeaponsLocker.Services
                     Id = model.Id,
                     Caliber = model.Caliber,
                     ProjectileType = model.ProjectileType,
-                    Usage = model.Usage,
 
                 };
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.Attachments.Add(entity);
+                ctx.Ammunitions.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
-        public IEnumerable<AttachmentListItem> GetAttachment()
+        public IEnumerable<AmmunitionListItem>GetAmmunition(int Id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
-                        .Attachments
-                        .Where(e => e.AttachmentId = Attachment)
+                        .Ammunitions
+                        .Where(e => e.Id == Id)
                         .Select(
                         e =>
-                            new AttachmentListItem
+                            new AmmunitionListItem
                             {
-                                AttachmentId = e.AttachmentId,
-                                CreatedBy = e.CreatedBy,
-                                AttachmentType = e.AttachmentType,
+                                Id = e.Id,
+                                Caliber = e.Caliber,
+                                ProjectileType = e.ProjectileType,
                             }
                             );
                 return query.ToArray();
             }
         }
-        public AttachmentDetails GetAttachmentById(int id)
+        public AmmunitionDetails GetAmmunitionById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                       .Attachments
-                       .Single(e => e.AttachmentId == id);
+                       .Ammunitions
+                       .Single(e => e.Id == id);
                 return
-                    new AttachmentDetails
+                    new AmmunitionDetails
                     {
-                        AttachmentId = entity.AttachmentId,
-                        CreatedBy = entity.CreatedBy,
-                        AttachmentType = entity.AttachmentType,
+                        Id = entity.Id,
+                        Caliber = entity.Caliber,
+                        ProjectileType = entity.ProjectileType,
                     };
             }
         }
-        public bool UpdateAttachment(AttachmentEdit model)
+        public bool UpdateAttachment(AmmunitionEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                        .Attachments
-                        .Single(e => e.AttachmentId == model.AttachmentId);
-                entity.AttachmentId = model.AttachmentId;
-                entity.CreatedBy = model.CreatedBy;
-                entity.AttachmentType = model.AttachmentType;
+                        .Ammunitions
+                        .Single(e => e.Id == model.Id);
+                entity.Id = model.Id;
+                entity.Caliber = model.Caliber;
+                entity.ProjectileType = model.ProjectileType;
 
                 return ctx.SaveChanges() == 1;
             }
         }
-        public bool Delete(int AttachmentId)
+        public bool Delete(int Id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                        .Attachments
-                        .Single(e => e.AttachmentId == AttachmentId);
-                ctx.Attachments.Remove(entity);
+                        .Ammunitions
+                        .Single(e => e.Id == Id);
+                ctx.Ammunitions.Remove(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
     }
-}
 }

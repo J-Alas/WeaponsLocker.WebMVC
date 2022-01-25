@@ -27,14 +27,14 @@ namespace WeaponsLocker.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-        public IEnumerable<FirearmListItem> GetFirearms()
+        public IEnumerable<FirearmListItem> GetFirearms(int FirearmId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
                         .Firearms
-                        .Where(e => e.FirearmId = FirearmId)
+                        .Where(e => e.FirearmId == FirearmId)
                         .Select(
                         e =>
                             new FirearmListItem

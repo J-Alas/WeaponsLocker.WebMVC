@@ -27,14 +27,14 @@ namespace WeaponsLocker.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-        public IEnumerable<AttachmentListItem> GetAttachment()
+        public IEnumerable<AttachmentListItem> GetAttachment(int AttachmentId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
                         .Attachments
-                        .Where(e => e.AttachmentId = Attachment)
+                        .Where(e => e.AttachmentId == AttachmentId)
                         .Select(
                         e =>
                             new AttachmentListItem
@@ -42,8 +42,7 @@ namespace WeaponsLocker.Services
                                 AttachmentId = e.AttachmentId,
                                 CreatedBy = e.CreatedBy,
                                 AttachmentType = e.AttachmentType,
-                            }
-                            );
+                            });
                 return query.ToArray();
             }
         }
@@ -92,5 +91,4 @@ namespace WeaponsLocker.Services
             }
         }
     }
-}
 }
