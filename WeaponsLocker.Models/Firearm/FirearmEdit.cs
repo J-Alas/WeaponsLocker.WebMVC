@@ -10,6 +10,6 @@ namespace WeaponsLocker.Models.Firearm
     {
         public int FirearmId { get; set; }
         public string CreatedBy { get; set; }
-        public string Model { get; set; }
+        public string GunModel { get; set; }
     }
 }

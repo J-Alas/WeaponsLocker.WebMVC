@@ -23,7 +23,7 @@ namespace WeaponsLocker.Services
                     OwnerId = _userId,
                     FirearmType = model.FirearmType,
                     CreatedBy = model.CreatedBy,
-                    Model = model.Model,
+                    GunModel = model.GunModel,
                 };
             using (var ctx = new ApplicationDbContext())
             {
@@ -46,7 +46,7 @@ namespace WeaponsLocker.Services
                                 FirearmId = e.FirearmId,
                                 FirearmType = e.FirearmType,
                                 CreatedBy = e.CreatedBy,
-                                Model = e.Model,
+                                GunModel = e.GunModel,
                                 LastCleaned = e.LastCleaned,
                             }
                             );
@@ -68,7 +68,7 @@ namespace WeaponsLocker.Services
                         Usage = entity.Usage,
                         FirearmId = entity.FirearmId,
                         CreatedBy = entity.CreatedBy,
-                        Model = entity.Model,
+                        GunModel = entity.GunModel,
                         LastCleaned = entity.LastCleaned,
                     };
             }
@@ -82,7 +82,7 @@ namespace WeaponsLocker.Services
                         .Firearms
                         .Single(e =>e.FirearmId == model.FirearmId && e.OwnerId == _userId);
                 entity.CreatedBy = model.CreatedBy;
-                entity.Model = model.Model;
+                entity.GunModel = model.GunModel;
 
                 return ctx.SaveChanges() == 1;
             }

@@ -66,7 +66,7 @@ namespace WeaponsLocker.WebMVC.Controllers
                 {
                     FirearmId = detail.FirearmId,
                     CreatedBy = detail.CreatedBy,
-                    Model = detail.Model,
+                    GunModel = detail.GunModel,
                 };
             return View(model);
         }

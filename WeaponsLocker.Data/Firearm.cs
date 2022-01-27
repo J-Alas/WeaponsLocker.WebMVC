@@ -19,7 +19,7 @@ namespace WeaponsLocker.Data
         [Required]
         public string CreatedBy { get; set; }
         [Required]
-        public string Model { get; set; }
+        public string GunModel { get; set; }
         [Required]
         public string Usage { get; set; } 
         [Required]

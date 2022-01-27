@@ -12,7 +12,7 @@ namespace WeaponsLocker.Models.Firearm
         [Required]
         public string FirearmType { get; set; }
         [Required]
-        public string Model { get; set; }
+        public string GunModel { get; set; }
         [Required]
         [Display (Name ="Created by")]
         public string CreatedBy { get; set; }

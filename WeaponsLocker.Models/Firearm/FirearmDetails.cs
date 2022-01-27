@@ -14,7 +14,7 @@ namespace WeaponsLocker.Models.Firearm
         public int FirearmId { get; set; }
         [Display(Name = "Created by")]
         public string CreatedBy { get; set; }
-        public string Model { get; set; }
+        public string GunModel { get; set; }
         [Display(Name ="Cleaned on")]
         public DateTimeOffset? LastCleaned { get; set; }
     }
