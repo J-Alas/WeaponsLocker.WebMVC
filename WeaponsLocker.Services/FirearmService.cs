@@ -24,6 +24,8 @@ namespace WeaponsLocker.Services
                     FirearmType = model.FirearmType,
                     CreatedBy = model.CreatedBy,
                     GunModel = model.GunModel,
+                    Usage = model.Usage,
+                    LastCleaned = model.LastCleaned,
                 };
             using (var ctx = new ApplicationDbContext())
             {

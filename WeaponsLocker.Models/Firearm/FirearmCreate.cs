@@ -16,5 +16,10 @@ namespace WeaponsLocker.Models.Firearm
         [Required]
         [Display (Name ="Created by")]
         public string CreatedBy { get; set; }
+        [Required]
+        public string  Usage { get; set; }
+        [Required]
+        public DateTimeOffset? LastCleaned { get; set; }
+
     }
 }

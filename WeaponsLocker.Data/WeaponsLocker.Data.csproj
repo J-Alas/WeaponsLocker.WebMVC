@@ -61,35 +61,11 @@
     <Compile Include="Attachment.cs" />
     <Compile Include="Firearm.cs" />
     <Compile Include="IdentityModels.cs" />
-    <Compile Include="Migrations\202201270743005_SecondMigration.cs" />
-    <Compile Include="Migrations\202201270743005_SecondMigration.designer.cs">
-      <DependentUpon>202201270743005_SecondMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202201270920455_ThirdMigration.cs" />
-    <Compile Include="Migrations\202201270920455_ThirdMigration.designer.cs">
-      <DependentUpon>202201270920455_ThirdMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202201271346359_FourthMigration.cs" />
-    <Compile Include="Migrations\202201271346359_FourthMigration.designer.cs">
-      <DependentUpon>202201271346359_FourthMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202201270743005_SecondMigration.resx">
-      <DependentUpon>202201270743005_SecondMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202201270920455_ThirdMigration.resx">
-      <DependentUpon>202201270920455_ThirdMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202201271346359_FourthMigration.resx">
-      <DependentUpon>202201271346359_FourthMigration.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -249,10 +249,10 @@
     <Content Include="Views\Attachment\Details.cshtml" />
     <Content Include="Views\Attachment\Create.cshtml" />
     <Content Include="Views\Firearm\Index.cshtml" />
-    <Content Include="Views\Firearm\Create.cshtml" />
     <Content Include="Views\Firearm\Details.cshtml" />
     <Content Include="Views\Firearm\Edit.cshtml" />
     <Content Include="Views\Firearm\Delete.cshtml" />
+    <Content Include="Views\Firearm\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
