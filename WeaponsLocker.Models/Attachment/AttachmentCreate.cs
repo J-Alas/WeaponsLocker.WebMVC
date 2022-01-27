@@ -12,7 +12,6 @@ namespace WeaponsLocker.Models.Attachment
     {
         [Required]
         public string AttachmentType { get; set; }
-        [ForeignKey(nameof(Firearm))]
         public string CreatedBy { get; set; }
         [Required]
         public string Usage { get; set; }

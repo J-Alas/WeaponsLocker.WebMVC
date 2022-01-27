@@ -16,7 +16,6 @@ namespace WeaponsLocker.Data
         public Guid OwnerId { get; set; }
         [Required]
         public string AttachmentType { get; set; }
-        [ForeignKey(nameof(Firearm))]
         [Required]
         public string CreatedBy { get; set; }
         public virtual Firearm Firearm { get; set; }
