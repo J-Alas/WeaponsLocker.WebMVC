@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace WeaponsLocker.Models.Attachment
     {
         [Required]
         public string AttachmentType { get; set; }
-        [Required]
+        [ForeignKey(nameof(Firearm))]
         public string CreatedBy { get; set; }
         [Required]
         public string Usage { get; set; }

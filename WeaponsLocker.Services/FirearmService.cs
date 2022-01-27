@@ -18,7 +18,7 @@ namespace WeaponsLocker.Services
         public bool CreateFirearm(FirearmCreate model)
         {
             var entity =
-                new Firearm()
+                new Data.Firearm()
                 {
                     OwnerId = _userId,
                     FirearmType = model.FirearmType,
