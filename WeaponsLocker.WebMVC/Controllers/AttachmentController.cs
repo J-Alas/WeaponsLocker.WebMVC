@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,12 +9,16 @@ using WeaponsLocker.Services;
 
 namespace WeaponsLocker.WebMVC.Controllers
 {
+    [Authorize]
     public class AttachmentController : Controller
     {
         // GET: Attachment
         public ActionResult Index()
         {
-            return View();
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new AttachmentService(userId);
+            var model = service.GetAttachment();
+            return View(model);
         }
 
         public ActionResult Create()
@@ -31,18 +36,18 @@ namespace WeaponsLocker.WebMVC.Controllers
 
             if (service.CreateAttachment(model))
             {
-                TempData["SaveResult"] = "Your Attachment was created.";
+                TempData["SaveResult"] = "Your Attachment was added.";
                 return RedirectToAction("Index");
             }
-            ModelState.AddModelError("", "Attachment could not be created");
+            ModelState.AddModelError("", "Attachment could not be added");
             return View(model);
         }
 
         //Come back to this in the morning!!
         private AttachmentService CreateAttachmentService()
         {
-            //var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new AttachmentService();
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new AttachmentService(userId);
             return service;
         }
         public ActionResult Details(int id)
@@ -62,6 +67,7 @@ namespace WeaponsLocker.WebMVC.Controllers
                     AttachmentId = detail.AttachmentId,
                     CreatedBy = detail.CreatedBy,
                     AttachmentType = detail.AttachmentType,
+                    Usage = detail.Usage,
                 };
             return View(model);
         }
@@ -83,9 +89,9 @@ namespace WeaponsLocker.WebMVC.Controllers
                 return RedirectToAction("Index");
             }
             ModelState.AddModelError("", "Your attachment could not be updated.");
-            return View();
+            return View(model);
         }
-        [ActionName("Delete")]
+
         public ActionResult Delete(int id)
         {
             var svc = CreateAttachmentService();
@@ -93,10 +99,11 @@ namespace WeaponsLocker.WebMVC.Controllers
 
             return View(model);
         }
+
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeletePost(int id)
+        public ActionResult DeleteAttachment(int id)
         {
             var service = CreateAttachmentService();
             service.Delete(id);

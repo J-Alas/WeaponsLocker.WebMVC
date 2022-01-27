@@ -10,12 +10,17 @@ namespace WeaponsLocker.Services
 {
     public class AttachmentService
     {
+        private readonly Guid _userid;
+        public AttachmentService(Guid userId)
+        {
+            _userid = userId;
+        }
         public bool CreateAttachment(AttachmentCreate model)
         {
             var entity =
                 new Attachment()
                 {
-                    AttachmentId = model.AttachmentId,
+                    OwnerId = _userid,
                     AttachmentType = model.AttachmentType,
                     CreatedBy = model.CreatedBy,
                     Usage = model.Usage,
@@ -27,14 +32,14 @@ namespace WeaponsLocker.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-        public IEnumerable<AttachmentListItem> GetAttachment(int AttachmentId)
+        public IEnumerable<AttachmentListItem> GetAttachment()
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
                         .Attachments
-                        .Where(e => e.AttachmentId == AttachmentId)
+                        .Where(e => e.OwnerId == _userid)
                         .Select(
                         e =>
                             new AttachmentListItem
@@ -42,6 +47,7 @@ namespace WeaponsLocker.Services
                                 AttachmentId = e.AttachmentId,
                                 CreatedBy = e.CreatedBy,
                                 AttachmentType = e.AttachmentType,
+                                Usage = e.Usage,
                             });
                 return query.ToArray();
             }
@@ -53,13 +59,14 @@ namespace WeaponsLocker.Services
                 var entity =
                     ctx
                        .Attachments
-                       .Single(e => e.AttachmentId == id);
+                       .Single(e => e.AttachmentId == id && e.OwnerId == _userid);
                 return
                     new AttachmentDetails
                     {
                         AttachmentId = entity.AttachmentId,
                         CreatedBy = entity.CreatedBy,
                         AttachmentType = entity.AttachmentType,
+                        Usage = entity.Usage,
                     };
             }
         }
@@ -70,7 +77,7 @@ namespace WeaponsLocker.Services
                 var entity =
                     ctx
                         .Attachments
-                        .Single(e => e.AttachmentId == model.AttachmentId);
+                        .Single(e => e.AttachmentId == model.AttachmentId && e.OwnerId == _userid);
                 entity.AttachmentId = model.AttachmentId;
                 entity.CreatedBy = model.CreatedBy;
                 entity.AttachmentType = model.AttachmentType;
@@ -78,14 +85,14 @@ namespace WeaponsLocker.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-        public bool Delete(int AttachmentId)
+        public bool Delete(int attachmentId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Attachments
-                        .Single(e => e.AttachmentId == AttachmentId);
+                        .Single(e => e.AttachmentId == attachmentId && e.OwnerId == _userid);
                 ctx.Attachments.Remove(entity);
                 return ctx.SaveChanges() == 1;
             }

@@ -8,14 +8,10 @@ namespace WeaponsLocker.Models.Ammunition
 {
     public class AmmunitionDetails
     {
-        public int Id { get; set; }
+        public int AmmoId { get; set; }
         public decimal Caliber { get; set; }
         public string ProjectileType { get; set; }
-        public enum Usage
-        {
-            EverydayCarry,
-            HomeDefense,
-            Hunting,
-        }
+        public string Usage { get; set; }
     }
+
 }

@@ -12,6 +12,8 @@ namespace WeaponsLocker.Data
         [Key]
         public int AttachmentId { get; set; }
         [Required]
+        public Guid OwnerId { get; set; }
+        [Required]
         public string AttachmentType { get; set; }
         [Required]
         public string CreatedBy { get; set; }

@@ -1,0 +1,50 @@
+﻿@model WeaponsLocker.Models.Ammunition.AmmunitionDetails
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AmmunitionDetails</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AmmoId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AmmoId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Caliber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Caliber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectileType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectileType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usage)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

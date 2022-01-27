@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,7 +15,8 @@ namespace WeaponsLocker.WebMVC.Controllers
         // GET: Firearm
         public ActionResult Index()
         {
-            var service = new FirearmService();
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new FirearmService(userId);
             var model = service.GetFirearms();
             return View(model);
         }
@@ -44,8 +46,8 @@ namespace WeaponsLocker.WebMVC.Controllers
         //Come back to this in the morning!!
         private FirearmService CreateFirearmService()
         {
-            //var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new FirearmService();
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new FirearmService(userId);
             return service;
         }
         public ActionResult Details(int id)
@@ -65,7 +67,6 @@ namespace WeaponsLocker.WebMVC.Controllers
                     FirearmId = detail.FirearmId,
                     CreatedBy = detail.CreatedBy,
                     Model = detail.Model,
-                    LastCleaned = detail.LastCleaned,
                 };
             return View(model);
         }
@@ -87,7 +88,7 @@ namespace WeaponsLocker.WebMVC.Controllers
                 return RedirectToAction("Index");
             }
             ModelState.AddModelError("", "Your firearm could not be updated.");
-            return View();
+            return View(model);
         }
         [ActionName("Delete")]
         public ActionResult Delete(int id)
@@ -100,7 +101,7 @@ namespace WeaponsLocker.WebMVC.Controllers
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeletePost(int id)
+        public ActionResult DeleteFirearm(int id)
         {
             var service = CreateFirearmService();
             service.Delete(id);

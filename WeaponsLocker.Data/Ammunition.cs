@@ -10,16 +10,15 @@ namespace WeaponsLocker.Data
     public class Ammunition
     {
         [Key]
-        public int Id { get; set; }
+        public int AmmoId { get; set; }
+        [Required]
+        public Guid OwnerId { get; set; }
         [Required]
         public decimal Caliber { get; set; }
         [Required]
         public string ProjectileType { get; set; }
-        public enum Usage
-        {
-            EverydayCarry,
-            HomeDefense,
-            Hunting,
-        }
+
+        [Required]
+        public string Usage { get; set; }
     }
 }

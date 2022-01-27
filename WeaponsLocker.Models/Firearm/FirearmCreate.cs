@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,11 +9,12 @@ namespace WeaponsLocker.Models.Firearm
 {
     public class FirearmCreate
     {
-        public enum FirearmType { Rifle, SniperRifle, Shotgun, Pistol }
-        public enum Usage { EverydayCarry, HomeDefense, Hunting, }
-        public int FirearmId { get; set; }
-        public string CreatedBy { get; set; }
+        [Required]
+        public string FirearmType { get; set; }
+        [Required]
         public string Model { get; set; }
-        public DateTimeOffset? LastCleaned { get; set; }
+        [Required]
+        [Display (Name ="Created by")]
+        public string CreatedBy { get; set; }
     }
 }

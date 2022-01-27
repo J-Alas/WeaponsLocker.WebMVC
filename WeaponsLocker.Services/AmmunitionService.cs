@@ -10,15 +10,20 @@ namespace WeaponsLocker.Services
 {
     public class AmmunitionService
     {
+        private readonly Guid _userid;
+        public AmmunitionService(Guid userId)
+        {
+            _userid = userId;
+        }
         public bool CreateAmmunition(AmmunitionCreate model)
         {
             var entity =
-                new Ammunition()
+                new Data.Ammunition()
                 {
-                    Id = model.Id,
+                    OwnerId = _userid,
                     Caliber = model.Caliber,
                     ProjectileType = model.ProjectileType,
-
+                    Usage = model.Usage,
                 };
             using (var ctx = new ApplicationDbContext())
             {
@@ -26,21 +31,22 @@ namespace WeaponsLocker.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-        public IEnumerable<AmmunitionListItem>GetAmmunition(int Id)
+        public IEnumerable<AmmunitionListItem>GetAmmunition()
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
                         .Ammunitions
-                        .Where(e => e.Id == Id)
+                        .Where(e => e.OwnerId == _userid)
                         .Select(
                         e =>
                             new AmmunitionListItem
                             {
-                                Id = e.Id,
+                                AmmoId = e.AmmoId,
                                 Caliber = e.Caliber,
                                 ProjectileType = e.ProjectileType,
+                                Usage=e.Usage,
                             }
                             );
                 return query.ToArray();
@@ -53,13 +59,14 @@ namespace WeaponsLocker.Services
                 var entity =
                     ctx
                        .Ammunitions
-                       .Single(e => e.Id == id);
+                       .Single(e => e.AmmoId == id && e.OwnerId == _userid);
                 return
                     new AmmunitionDetails
                     {
-                        Id = entity.Id,
+                        AmmoId = entity.AmmoId,
                         Caliber = entity.Caliber,
                         ProjectileType = entity.ProjectileType,
+                        Usage = entity.Usage,
                     };
             }
         }
@@ -70,22 +77,22 @@ namespace WeaponsLocker.Services
                 var entity =
                     ctx
                         .Ammunitions
-                        .Single(e => e.Id == model.Id);
-                entity.Id = model.Id;
+                        .Single(e => e.AmmoId == model.AmmoId && e.OwnerId == _userid);
                 entity.Caliber = model.Caliber;
                 entity.ProjectileType = model.ProjectileType;
+                entity.Usage = model.Usage;
 
                 return ctx.SaveChanges() == 1;
             }
         }
-        public bool Delete(int Id)
+        public bool Delete(int ammoId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Ammunitions
-                        .Single(e => e.Id == Id);
+                        .Single(e => e.AmmoId == ammoId && e.OwnerId == _userid);
                 ctx.Ammunitions.Remove(entity);
                 return ctx.SaveChanges() == 1;
             }

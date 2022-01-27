@@ -20,6 +20,9 @@
         <th>
             @Html.DisplayNameFor(model => model.CreatedBy)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usage)
+        </th>
         <th></th>
     </tr>
 
@@ -35,9 +38,12 @@
             @Html.DisplayFor(modelItem => item.CreatedBy)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.DisplayFor(modelItem => item.Usage)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AttachmentId  }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AttachmentId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AttachmentId})
         </td>
     </tr>
 }

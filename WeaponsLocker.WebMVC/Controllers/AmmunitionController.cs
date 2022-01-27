@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,12 +9,16 @@ using WeaponsLocker.Services;
 
 namespace WeaponsLocker.WebMVC.Controllers
 {
+    [Authorize]
     public class AmmunitionController : Controller
     {
         // GET: Ammunition
         public ActionResult Index()
         {
-            return View();
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new AmmunitionService(userId);
+            var model = service.GetAmmunition();
+            return View(model);
         }
 
         public ActionResult Create()
@@ -41,8 +46,8 @@ namespace WeaponsLocker.WebMVC.Controllers
         //Come back to this in the morning!!
         private AmmunitionService CreateAmmunitionService()
         {
-            //var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new AmmunitionService();
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new AmmunitionService(userId);
             return service;
         }
         public ActionResult Details(int id)
@@ -59,9 +64,10 @@ namespace WeaponsLocker.WebMVC.Controllers
             var model =
                 new AmmunitionEdit
                 {
-                    Id = detail.Id,
+                    AmmoId = detail.AmmoId,
                     Caliber = detail.Caliber,
                     ProjectileType = detail.ProjectileType,
+                    Usage = detail.Usage,
                 };
             return View(model);
         }
@@ -71,12 +77,13 @@ namespace WeaponsLocker.WebMVC.Controllers
         {
             if (!ModelState.IsValid) return View(model);
 
-            if (model.Id != id)
+            if (model.AmmoId != id)
             {
                 ModelState.AddModelError("", "Id mismatch.");
                 return View(model);
             }
             var service = CreateAmmunitionService();
+
             if (service.UpdateAttachment(model))
             {
                 TempData["SaveResult"] = "Your ammo was updated.";
@@ -90,13 +97,12 @@ namespace WeaponsLocker.WebMVC.Controllers
         {
             var svc = CreateAmmunitionService();
             var model = svc.GetAmmunitionById(id);
-
             return View(model);
         }
         [HttpPost]
         [ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeletePost(int id)
+        public ActionResult DeleteAmmunition(int id)
         {
             var service = CreateAmmunitionService();
             service.Delete(id);

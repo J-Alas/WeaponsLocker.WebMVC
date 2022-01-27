@@ -12,10 +12,16 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.AmmoId)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Caliber)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ProjectileType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Usage)
         </th>
         <th></th>
     </tr>
@@ -23,15 +29,21 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.AmmoId)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Caliber)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ProjectileType)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.DisplayFor(modelItem => item.Usage)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AmmoId}) |
+            @Html.ActionLink("Details", "Details", new { id=item.AmmoId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AmmoId })
         </td>
     </tr>
 }

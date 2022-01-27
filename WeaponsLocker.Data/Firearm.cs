@@ -7,31 +7,21 @@ using System.Threading.Tasks;
 
 namespace WeaponsLocker.Data
 {
-    public enum FirearmType { Rifle, SniperRifle, Shotgun, Pistol}
-    public enum Usage { EverydayCarry, HomeDefense, Hunting,}
     public class Firearm
     {
         [Key]
         public int FirearmId { get; set; }
-        public enum FirearmType
-        {
-            Rifle,
-            SniperRifle,
-            Shotgun,
-            Pistol,
-        }
+        [Required]
+        public Guid OwnerId { get; set; }
 
+        [Required]
+        public string FirearmType { get; set; }
         [Required]
         public string CreatedBy { get; set; }
         [Required]
         public string Model { get; set; }
-        public enum Usage
-        {
-            EverydayCarry,
-            HomeDefense,
-            Hunting,
-        }
-
+        [Required]
+        public string Usage { get; set; } 
         [Required]
         public DateTimeOffset? LastCleaned { get; set; }
 
